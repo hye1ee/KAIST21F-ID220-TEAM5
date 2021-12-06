@@ -1,6 +1,7 @@
 import axios from 'axios';
 import {React, useState} from 'react';
 import './App.css';
+import Speech from './speech.js';
 
 function App() {
   const [message, setMessage] = useState('');
@@ -12,10 +13,20 @@ function App() {
     axios.get('http://localhost:8080/on');
   }
 
+  const handlemessage = () =>{
+    console.log('try');
+    if(message === true){
+      setMessage(false);
+    }else{
+      setMessage(true);
+    }
+  }
+
+  //<button onClick={click_off}>off</button>
+  //<button onClick={click_on}>on</button>
   return (
     <div className="App">
-      <button onClick={click_off}>off</button>
-      <button onClick={click_on}>on</button>
+      <Speech />
     </div>
   );
 }
