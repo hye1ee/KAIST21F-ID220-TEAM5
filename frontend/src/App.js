@@ -1,7 +1,8 @@
 import axios from 'axios';
 import {React, useState} from 'react';
-import './App.css';
-import Speech from './speech.js';
+import './style.css';
+import Speech from './Speech.js';
+import Menu from './Menu.js'
 
 function App() {
   const [message, setMessage] = useState('');
@@ -22,10 +23,15 @@ function App() {
     }
   }
 
+  const postmenu = (name) => {
+    axios.post('/yogurt/menu',{name:name});
+  }
+
   //<button onClick={click_off}>off</button>
   //<button onClick={click_on}>on</button>
   return (
-    <div className="App">
+    <div className="main_page">
+      <Menu />
       <Speech />
     </div>
   );

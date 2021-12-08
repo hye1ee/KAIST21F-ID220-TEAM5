@@ -1,0 +1,53 @@
+@font-face {
+    font-family: 'readex';
+    src: url('https://fonts.googleapis.com/css2?family=Readex+Pro:wght@500&display=swap');
+}
+
+.main_page{
+    display : flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: stretch;
+    flex-wrap: nowrap;
+}
+
+.menu_block{
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    align-items: center;
+}
+.speech_block{
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1; 
+    align-items: center;
+}
+
+.menu_list{
+    display: flex;
+    flex-direction: column;
+}
+.menu_item{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+
+    height : 60px;
+    width: 200px;
+    border-radius: 30px;
+    box-shadow: 1px 1px 5px rgba(0, 0, 0, .05);
+    background-color: white;
+
+    margin : 10px 0;
+}
+.menu_item:hover{
+    cursor: pointer;
+}
+
+.menu_name{
+    font-family : 'readex';
+    font-weight: 500;
+    font-size: 15px;
+}

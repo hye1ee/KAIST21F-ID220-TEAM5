@@ -1,4 +1,6 @@
 import React, {useState} from 'react'
+import './style.css'
+import axios from 'axios'
 
 // basic settings for using speech recognition API
 // runs well on chrome & *edge
@@ -20,18 +22,35 @@ mic.lang = 'en-US';
 function Speech() {
     const [text, setText] = useState(null);
 
-    const handleListen = () => {
-
-        mic.start();
-        mic.onend = () =>{
-            console.log('mic stopped');
+    const checkOrder = (order) => {
+        if(order.length===3 && order[0]==='i' && order[1]==='want'){
+            axios.get(`/yogurt/menu/${order[2]}`)
+            .then((result)=>{
+                if(result.data===true){
+                    setText(`Menu Order : ${order[2]}`);
+                }else{
+                    setText(`There is no menu name : ${order[2]}`);
+                }
+            });
+        }else{
+            setText("Wrong Order, Please say 'I want ~' ");
         }
+    };
+
+    const handleMic = () => {
+        mic.start();
         mic.onstart = () =>{
             console.log('mic on');
         }
 
         mic.onresult = (event) => {
-            setText(event.results[0][0].transcript);
+            mic.onend = () =>{
+                console.log('mic stopped');
+
+                let order = event.results[0][0].transcript;
+                // eliminate . from order & make to lowercase & split by ' '
+                checkOrder(order.replace(/\./g,'').toLowerCase().split(' '));     
+            }
             mic.onerror = (event) =>{
                 console.log(event.error);
             }
@@ -40,8 +59,8 @@ function Speech() {
 
 
     return(
-        <div>
-            <button onClick={handleListen}>Start</button>
+        <div className="speech_block">
+            <button onClick={handleMic}>Start</button>
             <br></br>
             {text}
         </div>
