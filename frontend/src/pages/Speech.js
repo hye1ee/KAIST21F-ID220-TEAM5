@@ -26,10 +26,20 @@ function Speech() {
         if(order.length===3 && order[0]==='i' && order[1]==='want'){
             axios.get(`/yogurt/menu/${order[2]}`)
             .then((result)=>{
-                if(result.data===true){
-                    setText(`Menu Order : ${order[2]}`);
-                }else{
+                
+
+                if(result.data===false){
                     setText(`There is no menu name : ${order[2]}`);
+                }else{
+                    setText(`Menu Order : ${order[2]}`);
+                    let message = '1,';
+                    result.data.data.map((number)=>{
+                        message = message + `${number},`;
+                    });
+                    message = message.substr(0,13);
+                    console.log(message);
+                    axios.get(`/serial/${message}`);
+
                 }
             });
         }else{

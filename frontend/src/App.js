@@ -1,39 +1,36 @@
-import axios from 'axios';
 import {React, useState} from 'react';
 import './style.css';
-import Speech from './Speech.js';
-import Menu from './Menu.js'
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
+
+import Home from './pages/Home.js'
+import Menu from './pages/Menu.js'
+import Record from './pages/Record.js'
+import Setting from './pages/Setting.js'
+
+import Tab from './Tab.js'
+import Profile from './Profile.js'
 
 function App() {
-  const [message, setMessage] = useState('');
-
-  const click_off = () => {
-    axios.get('http://localhost:8080/off');
-  }
-  const click_on = () => {
-    axios.get('http://localhost:8080/on');
-  }
-
-  const handlemessage = () =>{
-    console.log('try');
-    if(message === true){
-      setMessage(false);
-    }else{
-      setMessage(true);
-    }
-  }
-
-  const postmenu = (name) => {
-    axios.post('/yogurt/menu',{name:name});
-  }
-
-  //<button onClick={click_off}>off</button>
-  //<button onClick={click_on}>on</button>
+  const [user, setUser] = useState(0);
+  const [current, setCurrent] = useState('home');
   return (
-    <div className="main_page">
-      <Menu />
-      <Speech />
-    </div>
+    <BrowserRouter>
+      <div className="main_page">
+        
+        <Tab className="main_tab" current={current}/>
+        <div className="main_content">
+            <Routes>
+              <Route exact path='/' element={<Home setCurrent={setCurrent}/>} />
+              <Route exact path='/menu' element={<Menu setCurrent={setCurrent}/>} />
+              <Route exact path='/record' element={<Record setCurrent={setCurrent}/>} />
+              <Route exact path='/setting' element={<Setting setuser={setUser} setCurrent={setCurrent}/>} />
+            </Routes> 
+        </div>
+        <Profile className="main_profile" user={user}/>
+        
+      </div>
+    </BrowserRouter>
+
   );
 }
 

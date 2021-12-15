@@ -55,8 +55,7 @@ yogurtRouter.get('/menu/:name',(req,res)=>{
         if(result===null){
             res.status(200).send(false);
         }else{ // there is already same name
-            console.log(result);
-            res.status(200).send(true);
+            res.json(result);
         }
     });
 })

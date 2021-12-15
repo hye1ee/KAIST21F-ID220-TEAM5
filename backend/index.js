@@ -36,10 +36,11 @@ app.get('/', (req, res) => {
     res.send('Hello World!')
 })
 
-app.get('/:action', (req, res)=>{
-    const action = req.params.action;
-    serial_port.write(action);
-    res.send(`action : ${action} completed`);
+app.get('/serial/:data', (req, res)=>{
+    const data = req.params.data;
+    console.log(data);
+    serial_port.write(data);
+    console.log('success serial port write');
 })
 
 
