@@ -5,7 +5,6 @@ function Profile() {
  
   return (
     <div className="profile_box">
-        profile
     </div>
   );
 }

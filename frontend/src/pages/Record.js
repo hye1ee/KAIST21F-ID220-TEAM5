@@ -4,7 +4,7 @@ function Record(props) {
   props.setCurrent('record');
  
   return (
-    <div>
+    <div className="page">
         record
     </div>
   );

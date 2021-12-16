@@ -28,8 +28,8 @@ yogurtRouter.post('/menu', (req,res)=>{
 });
 yogurtRouter.post('/topping', (req,res)=>{
     console.log('success post topping');
-    const {name} = req.body;
-    topping.add(name, (newitem)=>{
+    const {name, order} = req.body;
+    topping.add(name, order, (newitem)=>{
         res.json(newitem);
     });
 });
@@ -59,15 +59,16 @@ yogurtRouter.get('/menu/:name',(req,res)=>{
         }
     });
 })
-yogurtRouter.get('/topping/:name',(req,res)=>{
+yogurtRouter.get('/topping/:order',(req,res)=>{
     console.log('success check topping');
-    topping.check(req.params.name, (result)=>{
-        if(result===null){
-            res.status(200).send(false);
-        }else{ // there is already same name
-            console.log(result);
-            res.status(200).send(true);
-        }
+    topping.find(req.params.order, (result)=>{
+        res.json(result);
+    });
+})
+yogurtRouter.get('/topping/update/:order/:amount',(req,res)=>{
+    console.log('success update topping');
+    topping.update(req.params.order,req.params.amount, ()=>{
+        res.status(200).send();
     });
 })
 

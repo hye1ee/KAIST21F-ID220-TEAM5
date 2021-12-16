@@ -3,7 +3,7 @@ const mongoose = require('mongoose');
 const schema = new mongoose.Schema(
     {
         name : String,
-        data : { type : Array, default : [1,1,1,1,1,1,8]},
+        data : { type : Array, default : [0,0,0,0,0,0]},
         order : { type : Number, default : 0 }
     },{timestamps : true}
 );

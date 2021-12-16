@@ -13,9 +13,10 @@ function getAll(callback){
 }
 
 // add new menu item
-function add(name, callback){
+function add(name,order, callback){
     const newTopping = new toppingModel({
-        name
+        name,
+        order
     });
     newTopping.save((error, result)=>{
         callback(result);
@@ -45,10 +46,34 @@ function check(name, callback){
         }
     });
 }
+function find(order, callback){
+    toppingModel.findOne({order:order}, (error, result)=>{
+        if(error){
+            console.log('find error');
+            callback([]);
+        }else{
+            callback(result);
+            
+        }
+    });
+}
+
+function update(order, amount, callback){
+    toppingModel.updateOne({order:order}, {amount : amount}, (error)=>{
+        if(error){
+            console.log('update error');
+        }else{
+            callback();
+        }
+    });
+}
+
 
 module.exports = {
     getAll,
     add,
     remove,
-    check
+    check,
+    find,
+    update
 };

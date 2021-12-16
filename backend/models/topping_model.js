@@ -3,8 +3,7 @@ const mongoose = require('mongoose');
 const schema = new mongoose.Schema(
     {
         name : String,
-        order : { type : Number, default : 0},
-        activate : { type : Boolean, default : false},
+        order : String,
         amount : { type : Number, default : 10},
     },{timestamps : true}
 );

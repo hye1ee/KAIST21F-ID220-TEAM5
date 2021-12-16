@@ -11,7 +11,7 @@ function Tab(props) {
             <img className="tab_image" src={logo}/>
             <Button name='HOME' link='/' current={props.current==='home'}/>
             <Button name='MENU' link='/menu' current={props.current==='menu'}/>
-            <Button name='RECORD' link='/record' current={props.current==='record'}/>
+    
             <Button name='SETTING' link='/setting' current={props.current==='setting'}/>
             <div className="tab_image"></div>
         </div>
